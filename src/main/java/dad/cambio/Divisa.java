@@ -17,20 +17,26 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 public class Divisa extends Application {
-	
+
+	private DivisaPibote euro = new DivisaPibote("Euro", 1.0);
+	private DivisaPibote libra = new DivisaPibote("Libra", 0.91);
+	private DivisaPibote dolar = new DivisaPibote("Dolar", 1.17);
+	private DivisaPibote yen = new DivisaPibote("Yen", 124.17);
+
+	private DivisaPibote[] divisas = { euro, libra, dolar, yen };
+
 	private Button botonComprobar;
 	private Button botonAcabar;
 	private TextField origentext, finaltext;
-	private ComboBox <String> comienzoCombo;
-	private ComboBox cambioCombo;
-	
+	private ComboBox<DivisaPibote> comienzoCombo;
+	private ComboBox<DivisaPibote> cambioCombo;
+
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 
 		// creamos un cuadro de texto
 		origentext = new TextField("0");
 		origentext.setPrefColumnCount(4);// indicamos el ancho del cuadro
-
 
 		// creamos un combo box
 		comienzoCombo = new ComboBox();
@@ -58,7 +64,7 @@ public class Divisa extends Application {
 		finalBox.setAlignment(Pos.BASELINE_CENTER);
 		finalBox.setSpacing(5);
 		finalBox.getChildren().addAll(finaltext, cambioCombo);
-		
+
 		// creamos un botón
 		botonComprobar = new Button("Cambiar");
 		botonComprobar.setOnAction(e -> onCambiarAction(e));
@@ -80,18 +86,15 @@ public class Divisa extends Application {
 
 	private void onCambiarAction(ActionEvent e) {
 
-		
 	}
-
 
 	public static void main(String[] args) {
 		Application.launch(args);
 	}
 
-
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 		// TODO Auto-generated method stub
-		
+
 	}
 }
