@@ -85,16 +85,17 @@ public class Divisa extends Application {
 	}
 
 	private void onCambiarAction(ActionEvent e) {
+		Double cantidadOrigen = Double.parseDouble(origentext.getText());
+		DivisaPibote divisaOrigen = comienzoCombo.getSelectionModel().getSelectedItem();
+		DivisaPibote divisaDestino = cambioCombo.getSelectionModel().getSelectedItem();
 
+		double cantidadDestino = divisaDestino.fromEuro(divisaOrigen.toEuro(cantidadOrigen));
+
+		finaltext.setText("" + cantidadDestino);
 	}
 
 	public static void main(String[] args) {
 		Application.launch(args);
 	}
 
-	@Override
-	public void start(Stage primaryStage) throws Exception {
-		// TODO Auto-generated method stub
-
-	}
 }
