@@ -23,6 +23,60 @@ public class Divisa extends Application {
 	private TextField origentext, finaltext;
 	private ComboBox <String> comienzoCombo;
 	private ComboBox cambioCombo;
+	
+	@Override
+	public void start(Stage primaryStage) throws Exception {
+
+		// creamos un cuadro de texto
+		origentext = new TextField("0");
+		origentext.setPrefColumnCount(4);// indicamos el ancho del cuadro
+
+
+		// creamos un combo box
+		comienzoCombo = new ComboBox();
+		comienzoCombo.getItems().addAll(divisas);
+		comienzoCombo.getSelectionModel().selectFirst();
+
+		// HBox
+		HBox origenBox = new HBox();
+
+		origenBox.setAlignment(Pos.BASELINE_CENTER);
+		origenBox.setSpacing(5);
+		origenBox.getChildren().addAll(origentext, comienzoCombo);
+
+		// creamos un cuadro de texto
+		finaltext = new TextField("0");
+		finaltext.setPrefColumnCount(4);// indicamos el ancho del cuadro
+
+		// creamos un combo box
+		cambioCombo = new ComboBox();
+		cambioCombo.getItems().addAll(divisas);
+		cambioCombo.getSelectionModel().selectFirst();
+
+		HBox finalBox = new HBox();
+
+		finalBox.setAlignment(Pos.BASELINE_CENTER);
+		finalBox.setSpacing(5);
+		finalBox.getChildren().addAll(finaltext, cambioCombo);
+		
+		// creamos un botón
+		botonComprobar = new Button("Cambiar");
+		botonComprobar.setOnAction(e -> onCambiarAction(e));
+
+		// creamos un panel con disposición vertical
+		VBox root = new VBox();
+		root.setSpacing(5);
+		root.setAlignment(Pos.CENTER);
+		root.getChildren().addAll(origenBox, finalBox, botonComprobar);
+
+		// creamos la escena
+		Scene escena = new Scene(root, 320, 200);
+
+		// configuramos la ventana
+		primaryStage.setScene(escena);
+		primaryStage.setTitle("CambioDivisa");
+		primaryStage.show();
+	}
 
 	private void onCambiarAction(ActionEvent e) {
 
