@@ -15,6 +15,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import javafx.stage.Window;
 
 public class Divisa extends Application {
 
@@ -85,6 +86,7 @@ public class Divisa extends Application {
 	}
 
 	private void onCambiarAction(ActionEvent e) {
+		try {
 		Double cantidadOrigen = Double.parseDouble(origentext.getText());
 		DivisaPibote divisaOrigen = comienzoCombo.getSelectionModel().getSelectedItem();
 		DivisaPibote divisaDestino = cambioCombo.getSelectionModel().getSelectedItem();
@@ -92,6 +94,14 @@ public class Divisa extends Application {
 		double cantidadDestino = divisaDestino.fromEuro(divisaOrigen.toEuro(cantidadOrigen));
 
 		finaltext.setText("" + cantidadDestino);
+		}catch(NumberFormatException ex) {
+			Alert alert = new Alert(AlertType.ERROR);
+			alert.initOwner(primaryStage);
+			alert.setTitle("Error");
+			alert.setHeaderText("Debe introducir un número en la cantidad de origen");
+			alert.setContentText(ex.getMessage());
+			ex.printStackTrace();
+		}
 	}
 
 	public static void main(String[] args) {
