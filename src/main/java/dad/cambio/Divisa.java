@@ -56,7 +56,6 @@ public class Divisa extends Application {
 		finaltext.setPrefColumnCount(4);// indicamos el ancho del cuadro
 
 		// creamos un combo box
-		cambioCombo = new ComboBox();
 		cambioCombo.getItems().addAll(divisas);
 		cambioCombo.getSelectionModel().selectFirst();
 
