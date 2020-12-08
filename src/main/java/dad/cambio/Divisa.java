@@ -18,7 +18,8 @@ import javafx.stage.Stage;
 import javafx.stage.Window;
 
 public class Divisa extends Application {
-
+	private Stage primaryStage;
+	
 	private DivisaPibote euro = new DivisaPibote("Euro", 1.0);
 	private DivisaPibote libra = new DivisaPibote("Libra", 0.91);
 	private DivisaPibote dolar = new DivisaPibote("Dolar", 1.17);
@@ -31,6 +32,26 @@ public class Divisa extends Application {
 	private TextField origentext, finaltext;
 	private ComboBox<DivisaPibote> comienzoCombo;
 	private ComboBox<DivisaPibote> cambioCombo;
+	
+	private void onCambiarAction(ActionEvent e) {
+		try {
+		Double cantidadOrigen = Double.parseDouble(origentext.getText());
+		DivisaPibote divisaOrigen = comienzoCombo.getSelectionModel().getSelectedItem();
+		DivisaPibote divisaDestino = cambioCombo.getSelectionModel().getSelectedItem();
+
+		double cantidadDestino = divisaDestino.fromEuro(divisaOrigen.toEuro(cantidadOrigen));
+
+		finaltext.setText("" + cantidadDestino);
+		}catch (NumberFormatException ex) {
+			Alert alert = new Alert(AlertType.ERROR);
+			alert.initOwner(primaryStage);
+			alert.setTitle("Error");
+			alert.setHeaderText("Debe introducir un número en la cantidad de origen.");
+			alert.setContentText(ex.getMessage());
+			
+			alert.showAndWait();
+		}
+	}
 
 	@Override
 	public void start(Stage primaryStage) throws Exception {
@@ -84,23 +105,7 @@ public class Divisa extends Application {
 		primaryStage.show();
 	}
 
-	private void onCambiarAction(ActionEvent e) {
-		try {
-		Double cantidadOrigen = Double.parseDouble(origentext.getText());
-		DivisaPibote divisaOrigen = comienzoCombo.getSelectionModel().getSelectedItem();
-		DivisaPibote divisaDestino = cambioCombo.getSelectionModel().getSelectedItem();
 
-		double cantidadDestino = divisaDestino.fromEuro(divisaOrigen.toEuro(cantidadOrigen));
-
-		finaltext.setText("" + cantidadDestino);
-		}catch(NumberFormatException ex) {
-			Alert alert = new Alert(AlertType.ERROR);
-			alert.setTitle("Error");
-			alert.setHeaderText("Debe introducir un n�mero en la cantidad de origen");
-			alert.setContentText(ex.getMessage());
-			ex.printStackTrace();
-		}
-	}
 
 	public static void main(String[] args) {
 		Application.launch(args);
