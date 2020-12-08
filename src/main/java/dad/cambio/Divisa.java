@@ -61,7 +61,7 @@ public class Divisa extends Application {
 		origentext.setPrefColumnCount(4);// indicamos el ancho del cuadro
 
 		// creamos un combo box
-		comienzoCombo = new ComboBox();
+		comienzoCombo = new ComboBox<DivisaPibote>();
 		comienzoCombo.getItems().addAll(divisas);
 		comienzoCombo.getSelectionModel().selectFirst();
 
@@ -77,6 +77,7 @@ public class Divisa extends Application {
 		finaltext.setPrefColumnCount(4);// indicamos el ancho del cuadro
 
 		// creamos un combo box
+		cambioCombo = new ComboBox<DivisaPibote>();
 		cambioCombo.getItems().addAll(divisas);
 		cambioCombo.getSelectionModel().selectFirst();
 
