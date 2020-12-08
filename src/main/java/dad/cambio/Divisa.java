@@ -65,11 +65,11 @@ public class Divisa extends Application {
 		finalBox.setSpacing(5);
 		finalBox.getChildren().addAll(finaltext, cambioCombo);
 
-		// creamos un botón
+		// creamos un botï¿½n
 		botonComprobar = new Button("Cambiar");
 		botonComprobar.setOnAction(e -> onCambiarAction(e));
 
-		// creamos un panel con disposición vertical
+		// creamos un panel con disposiciï¿½n vertical
 		VBox root = new VBox();
 		root.setSpacing(5);
 		root.setAlignment(Pos.CENTER);
@@ -95,9 +95,8 @@ public class Divisa extends Application {
 		finaltext.setText("" + cantidadDestino);
 		}catch(NumberFormatException ex) {
 			Alert alert = new Alert(AlertType.ERROR);
-			alert.initOwner(primaryStage);
 			alert.setTitle("Error");
-			alert.setHeaderText("Debe introducir un número en la cantidad de origen");
+			alert.setHeaderText("Debe introducir un nï¿½mero en la cantidad de origen");
 			alert.setContentText(ex.getMessage());
 			ex.printStackTrace();
 		}
